@@ -1,15 +1,14 @@
 substitutions:
   name: "esp8266-evb"
 
-project:
-  name: "olimex.esphome-${name}"
-  version: "1.0"
-
 esphome:
   name: "${name}"
   name_add_mac_suffix: true
   platform: ESP8266
   board: modwifi
+  project:
+    name: "olimex.esphome-${name}"
+    version: "1.0"
 
 dashboard_import:
   package_import_url: github://peter-valkov/test/esp8266-evb.yaml
