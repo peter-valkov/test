@@ -1,0 +1,46 @@
+esphome:
+  name: esp8266-evb
+  platform: ESP8266
+  board: mod
+
+dashboard_import:
+  package_import_url: github://peter-valkov/test/esp8266-evb.yaml
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Enable OTA updates
+ota:
+
+wifi:
+  reboot_timeout: 5min  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap: {}
+
+# Enable captive portal
+captive_portal:
+
+# Relay
+switch:
+  platform: gpio
+  pin: GPIO5
+  name: Relay
+  id: relay
+
+# Button
+binary_sensor:
+  platform: gpio
+  pin:
+    number: GPIO0
+    mode:
+      input: true
+      pullup: true
+    inverted: true
+  filters:
+    delayed_on_off: 40ms
+  name: Button
+  on_release:
+    switch.toggle: relay
