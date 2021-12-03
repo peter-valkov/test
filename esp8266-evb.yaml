@@ -1,7 +1,7 @@
 esphome:
   name: esp8266-evb
   platform: ESP8266
-  board: mod
+  board: modwifi
 
 dashboard_import:
   package_import_url: github://peter-valkov/test/esp8266-evb.yaml
