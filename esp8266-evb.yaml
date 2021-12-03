@@ -1,5 +1,12 @@
+substitutions:
+  name: "esp8266-evb"
+
+project:
+  name: "olimex.esphome-${name}"
+  version: "1.0"
+
 esphome:
-  name: esp8266-evb
+  name: "${name}"
   name_add_mac_suffix: true
   platform: ESP8266
   board: modwifi
