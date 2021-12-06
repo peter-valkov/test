@@ -11,7 +11,7 @@ esphome:
     version: "1.0"
 
 dashboard_import:
-  package_import_url: github://peter-valkov/test/esp8266-evb.yaml
+  package_import_url: github://peter-valkov/test/${name}.yaml
 
 # Enable logging
 logger:
