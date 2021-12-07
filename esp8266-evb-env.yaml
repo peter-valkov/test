@@ -1,0 +1,56 @@
+substitutions:
+  name: "esp8266-evb-env"
+
+esphome:
+  name: "${name}"
+  name_add_mac_suffix: true
+  platform: ESP8266
+  board: modwifi
+  project:
+    name: "olimex.esphome-${name}"
+    version: "1.0"
+
+dashboard_import:
+  package_import_url: github://peter-valkov/test/${name}.yaml
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Enable OTA updates
+ota:
+
+wifi:
+  reboot_timeout: 5min  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap: {}
+
+# Enable captive portal
+captive_portal:
+
+i2c:
+  sda: GPIO2
+  scl: GPIO4
+
+# sensors
+sensor:
+- platform: bme280
+  temperature:
+    name: "Temperature"
+    oversampling: 16x
+  pressure:
+    name: "Pressure"
+  humidity:
+    name: "Humidity"
+  address: 0x76
+  update_interval: 60s
+  
+- platform: ccs811
+  eco2:
+    name: "eCO2"
+  tvoc:
+    name: "Total Voltative Organic Compound"
+  address: 0x5B
+  update_interval: 60s
