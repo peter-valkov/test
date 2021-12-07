@@ -74,12 +74,12 @@ display:
     - id: PAGE_TEMPERATURE
       lambda: |-
         if (id(TVOC).has_state()) {
-          it.printf(64, 0, id(DejaVuSans_30), TextAlign::TOP_CENTER, "%.1f°C", id(TEMPERATURE).state);
+          it.printf(64, 14, id(DejaVuSans_30), TextAlign::TOP_CENTER, "%.1f°C", id(TEMPERATURE).state);
         }
     - id: PAGE_HUMIDITY
       lambda: |-
         if (id(HUMIDITY).has_state()) {
-          it.printf(64, 0, id(DejaVuSans_30), TextAlign::TOP_CENTER, "%.1f%%", id(HUMIDITY).state);
+          it.printf(64, 14, id(DejaVuSans_30), TextAlign::TOP_CENTER, "%.1f%%", id(HUMIDITY).state);
         }
     - id: PAGE_PRESSURE
       lambda: |-
@@ -105,3 +105,4 @@ interval:
   then:
     - display.page.show_next: OLED_DISPLAY
     - component.update: OLED_DISPLAY
+
