@@ -61,10 +61,10 @@ sensor:
   update_interval: 60s
 
 font:
-  - file: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+  - file: fonts/DejaVuSans.ttf
     id: DejaVuSans_14
     size: 14
-  - file: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+  - file: fonts/DejaVuSans.ttf
     id: DejaVuSans_20
     size: 20
 
