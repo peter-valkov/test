@@ -55,7 +55,7 @@ sensor:
     name: "eCO2"
     id: ECO2
   tvoc:
-    name: "Total Voltative Organic Compound"
+    name: "Total Volatile Organic Compound"
     id: TVOC
   address: 0x5B
   update_interval: 60s
