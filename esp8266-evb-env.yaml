@@ -69,6 +69,8 @@ font:
     size: 20
 
 image:
+  - file: images/wifi-disconnected.png
+    id: wifi_disconnected_img
   - file: images/thermometer.png
     id: thermometer_img
   - file: images/humidity.png
@@ -85,7 +87,18 @@ display:
   model: "SSD1306 128x64"
   rotation: 180
   id: OLED_DISPLAY
+  on_page_change:
+    to: PAGE_WIFI_DISCONNECTED
+    then:
+      if:
+        condition:
+          wifi.connected:
+        then:
+          display.page.show_next: OLED_DISPLAY
   pages:
+    - id: PAGE_WIFI_DISCONNECTED
+      lambda: |-
+        it.image(32, 0, id(wifi_disconnected_img));
     - id: PAGE_TEMPERATURE
       lambda: |-
         it.image(0, 0, id(thermometer_img));
