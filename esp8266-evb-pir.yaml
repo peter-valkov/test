@@ -1,0 +1,39 @@
+substitutions:
+  name: "esp8266-evb-pir"
+
+esphome:
+  name: "${name}"
+  name_add_mac_suffix: true
+  platform: ESP8266
+  board: modwifi
+  project:
+    name: "olimex.esphome-${name}"
+    version: "1.0"
+
+dashboard_import:
+  package_import_url: github://peter-valkov/test/${name}.yaml
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  reboot_timeout: 5min
+
+# Enable OTA updates
+ota:
+
+wifi:
+  reboot_timeout: 5min  
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap: {}
+
+# Enable captive portal
+captive_portal:
+
+binary_sensor:
+  platform: gpio
+  pin: GPIO16
+  name: "PIR Sensor"
+  device_class: motion
+
