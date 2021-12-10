@@ -71,6 +71,8 @@ font:
 image:
   - file: images/wifi-disconnected.png
     id: wifi_disconnected_img
+  - file: images/home-assistant-disconnected.png
+    id: home_assistant_disconnected_img
   - file: images/thermometer.png
     id: thermometer_img
   - file: images/humidity.png
@@ -87,18 +89,13 @@ display:
   model: "SSD1306 128x64"
   rotation: 180
   id: OLED_DISPLAY
-  on_page_change:
-    to: PAGE_WIFI_DISCONNECTED
-    then:
-      if:
-        condition:
-          wifi.connected:
-        then:
-          display.page.show_next: OLED_DISPLAY
-  pages:
+  pages:  
     - id: PAGE_WIFI_DISCONNECTED
       lambda: |-
         it.image(32, 0, id(wifi_disconnected_img));
+    - id: PAGE_HOME_ASSISTANT_DISCONNECTED
+      lambda: |-
+        it.image(32, 0, id(home_assistant_disconnected_img));
     - id: PAGE_TEMPERATURE
       lambda: |-
         it.image(0, 0, id(thermometer_img));
@@ -137,6 +134,24 @@ display:
           it.printf(64, 16, id(DejaVuSans_20), TextAlign::TOP_CENTER, "%.0f", id(TVOC).state);
           it.printf(64, 40, id(DejaVuSans_20), TextAlign::TOP_CENTER, "ppb");
         }
+  on_page_change:
+    - to: PAGE_WIFI_DISCONNECTED
+      then:
+        if:
+          condition:
+            wifi.connected:
+          then:
+            display.page.show_next: OLED_DISPLAY
+    - to: PAGE_HOME_ASSISTANT_DISCONNECTED
+      then:
+        if:
+          condition:
+            or:
+              - api.connected:
+              - not:
+                  wifi.connected:
+          then:
+            display.page.show_next: OLED_DISPLAY
 
 interval:
   interval: 5s
